@@ -1,13 +1,12 @@
-package com.example.what2do;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.example.what2do.activities;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
+
+import com.example.what2do.R;
 
 public class MainActivity extends Activity implements View.OnClickListener {
     private Button profileButton;

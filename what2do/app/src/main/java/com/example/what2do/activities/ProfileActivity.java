@@ -1,10 +1,12 @@
-package com.example.what2do;
+package com.example.what2do.activities;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
+import com.example.what2do.R;
 
 public class ProfileActivity extends Activity implements View.OnClickListener {
     public static final String GROUP_ID = "com.example.what2do.GROUP_ID";

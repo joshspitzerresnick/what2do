@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.What2do">
 
-        <activity android:name=".MainActivity">
+        <activity android:name=".activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -18,8 +18,11 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ProfileActivity" />
-        <activity android:name=".GroupActivity" />
+        <activity android:name=".activities.ProfileActivity" />
+        <activity android:name=".activities.GroupActivity" />
+        <activity android:name=".activities.FactorsActivity" />
+        <activity android:name=".activities.SwipeActivity" />
+        <activity android:name=".activities.MatchesActivity" />
     </application>
 
 </manifest>
