@@ -12,6 +12,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.what2do.R;
 import com.example.what2do.fragments.FinishedFactorsFragment;
@@ -22,6 +24,11 @@ import com.example.what2do.fragments.StartFactorsFragment;
 import com.example.what2do.fragments.StartActivityFragment;
 import com.example.what2do.fragments.StartSwipeActivityFragment;
 import com.example.what2do.fragments.StartSwipeGenreFragment;
+import com.example.what2do.model.Member;
+import com.example.what2do.model.MemberAdapter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 enum GroupState {
     IDLE,
@@ -43,6 +50,9 @@ public class GroupActivity extends FragmentActivity implements View.OnClickListe
             "Sibling Group",
             "Friend Group"
     };
+
+    private RecyclerView memberRecyclerView;
+    private List<Member> memberList;
 
     private GroupState userState;
 
@@ -77,6 +87,20 @@ public class GroupActivity extends FragmentActivity implements View.OnClickListe
         TextView groupTitle = findViewById(R.id.group_title);
         groupTitle.setText(GROUP_NAMES[intent.getIntExtra(ProfileActivity.GROUP_ID, 0)]);
 
+        memberRecyclerView = (RecyclerView)findViewById(R.id.member_list);
+        memberRecyclerView.setHasFixedSize(true);
+        memberRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        Log.d("AA", memberRecyclerView.toString());
+
+        memberList = new ArrayList<>();
+        memberList.add(new Member("Member Name 1", R.drawable.man, R.drawable.group_wait));
+        memberList.add(new Member("Member Name 2", R.drawable.woman, R.drawable.group_wait));
+        memberList.add(new Member("Member Name 3", R.drawable.man, R.drawable.group_wait));
+
+        MemberAdapter adapter = new MemberAdapter(this, memberList);
+        memberRecyclerView.setAdapter(adapter);
+
+
         startActivityFragment = new StartActivityFragment();
         startFactorsFragment = new StartFactorsFragment();
         finishedFactorsFragment = new FinishedFactorsFragment();
@@ -90,9 +114,9 @@ public class GroupActivity extends FragmentActivity implements View.OnClickListe
                 .add(R.id.fragment_container, startActivityFragment, "")
                 .commit();
 
+        //fragmentState allows fragments to send messages to this activity
         fragmentState = new ViewModelProvider(this).get(FragmentState.class);
         fragmentState.getState().observe(this, state -> {
-            // Perform an action with the latest item data
             switch(state) {
                 case START_ACTIVITY_PRESSED:
                     setUserState(GroupState.FACTORS_STARTED);
@@ -151,12 +175,14 @@ public class GroupActivity extends FragmentActivity implements View.OnClickListe
             if (resultCode == RESULT_OK) {
                 setUserState(GroupState.SWIPE_GENRE_FINISHED);
             } else {
+                //if back is pressed, show the fragment with "swipe" button
                 setUserState(GroupState.SWIPE_GENRE);
             }
         } else if(requestCode == SWIPE_ACTIVITY_REQUEST) {
             if (resultCode == RESULT_OK) {
                 setUserState(GroupState.SWIPE_ACTIVITY_FINISHED);
             } else {
+                //if back is pressed, show the fragment with "swipe" button
                 setUserState(GroupState.SWIPE_ACTIVITY);
             }
         } else if(requestCode == MATCHES_REQUEST) {
@@ -211,6 +237,7 @@ public class GroupActivity extends FragmentActivity implements View.OnClickListe
                 setFragment(finishedSwipeGenreFragment);
                 //wait until all group members are finished, go to next swipe state
                 //setUserStateDelayed(GroupState.SWIPE_ACTIVITY_STARTED, 2000);
+                //this is instead called after pressing "ready up"
                 break;
             case SWIPE_ACTIVITY:
                 setFragment(startSwipeActivityFragment);
@@ -224,6 +251,7 @@ public class GroupActivity extends FragmentActivity implements View.OnClickListe
                 setFragment(finishedSwipeActivityFragment);
                 //wait until all group members are finished, go to next swipe state
                 //setUserStateDelayed(GroupState.MATCHES, 2000);
+                //this is instead called after pressing "ready up"
                 break;
             case MATCHES:
                 intent = new Intent(this, MatchesActivity.class);
