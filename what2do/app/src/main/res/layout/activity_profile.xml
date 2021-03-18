@@ -6,41 +6,210 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Profile Page"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <ImageView
+        android:id="@+id/profile_image_view"
+        android:layout_width="144dp"
+        android:layout_height="129dp"
+        android:layout_marginTop="56dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/profile_user" />
 
     <Button
         android:id="@+id/group_button1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="Family Group"
-        app:layout_constraintEnd_toEndOf="@+id/textView2"
-        app:layout_constraintStart_toStartOf="@+id/textView2"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        android:layout_marginTop="16dp"
+        android:text="Friend Group 2"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.122"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/group_button2" />
 
     <Button
         android:id="@+id/group_button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Sibling Group"
-        app:layout_constraintEnd_toEndOf="@+id/group_button1"
-        app:layout_constraintStart_toStartOf="@+id/group_button1"
-        app:layout_constraintTop_toBottomOf="@+id/group_button1" />
+        android:layout_marginTop="16dp"
+        android:text="Friend Group 1"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.122"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/group_button3" />
 
     <Button
         android:id="@+id/group_button3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Friend Group"
-        app:layout_constraintEnd_toEndOf="@+id/group_button2"
-        app:layout_constraintStart_toStartOf="@+id/group_button2"
-        app:layout_constraintTop_toBottomOf="@+id/group_button2" />
+        android:layout_marginTop="12dp"
+        android:clickable="true"
+
+        android:text="Family Group"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.11"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/your_groups_text_view" />
+
+    <TextView
+        android:id="@+id/your_preferences_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="Your Preferences:"
+        android:textSize="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.107"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/group_button1" />
+
+    <TextView
+        android:id="@+id/create_group_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginRight="28dp"
+        android:text="Create Group"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profile_image_view" />
+
+    <TextView
+        android:id="@+id/your_groups_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginTop="16dp"
+        android:text="Your Groups:"
+        android:textSize="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profile_image_view" />
+
+    <Button
+        android:id="@+id/create_group_button"
+        android:layout_width="52dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="8dp"
+        android:text="+"
+        app:layout_constraintEnd_toStartOf="@+id/create_group_text_view"
+        app:layout_constraintHorizontal_bias="0.647"
+        app:layout_constraintStart_toEndOf="@+id/your_groups_text_view"
+        app:layout_constraintTop_toBottomOf="@+id/profile_image_view" />
+
+    <com.google.android.material.chip.ChipGroup
+        android:layout_width="352dp"
+        android:layout_height="219dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/your_preferences_text_view"
+        app:layout_constraintVertical_bias="0.12">
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/preference_18_chip"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="18+"
+            app:chipIcon="@drawable/preference_age"
+            app:chipIconVisible="true" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/preference_21_chip"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="21+" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/preference_family_friendly_chip"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="Family Friendly"
+            app:chipIcon="@drawable/preference_family"
+            app:chipIconVisible="true" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/preference_vegan_chip"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="Vegan"
+            app:chipIcon="@drawable/preference_vegan"
+            app:chipIconVisible="true" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/preference_vegetarian_chip"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="Vegetarian"
+            app:chipIcon="@drawable/preference_vegetarian"
+            app:chipIconVisible="true" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/preference_gluten_chip"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="Gluten Free"
+            app:chipIcon="@drawable/preference_gluten"
+            app:chipIconVisible="true" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/preference_accessible_chip"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="Accessible"
+            app:chipIcon="@drawable/preference_accessible"
+            app:chipIconVisible="true" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/preference_smoking_chip"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="Smoking"
+            app:chipIcon="@drawable/preference_smoking"
+            app:chipIconVisible="true" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/preference_drinking_chip"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="Drinking"
+            app:chipIcon="@drawable/preference_drinking"
+            app:chipIconVisible="true" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/preference_location_chip"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="Location Sharing"
+            app:chipIcon="@drawable/preference_location"
+            app:chipIconVisible="true" />
+
+    </com.google.android.material.chip.ChipGroup>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
