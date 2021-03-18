@@ -24,11 +24,10 @@ import com.example.what2do.fragments.StartFactorsFragment;
 import com.example.what2do.fragments.StartActivityFragment;
 import com.example.what2do.fragments.StartSwipeActivityFragment;
 import com.example.what2do.fragments.StartSwipeGenreFragment;
-import com.example.what2do.model.Member;
+import com.example.what2do.model.FakeBackend;
+import com.example.what2do.model.Group;
 import com.example.what2do.model.MemberAdapter;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.example.what2do.util.ButtonListener;
 
 enum GroupState {
     IDLE,
@@ -45,14 +44,8 @@ enum GroupState {
 }
 
 public class GroupActivity extends FragmentActivity implements View.OnClickListener {
-    private final String[] GROUP_NAMES = {
-            "Family Group",
-            "Sibling Group",
-            "Friend Group"
-    };
-
     private RecyclerView memberRecyclerView;
-    private List<Member> memberList;
+    private Group group;
 
     private GroupState userState;
 
@@ -84,20 +77,17 @@ public class GroupActivity extends FragmentActivity implements View.OnClickListe
         setContentView(R.layout.activity_group);
 
         Intent intent = getIntent();
+        int groupIndex = intent.getIntExtra(ProfileActivity.GROUP_ID, 0);
+        group = FakeBackend.getGroups().get(groupIndex);
+
         TextView groupTitle = findViewById(R.id.group_title);
-        groupTitle.setText(GROUP_NAMES[intent.getIntExtra(ProfileActivity.GROUP_ID, 0)]);
+        groupTitle.setText(group.getName());
 
         memberRecyclerView = (RecyclerView)findViewById(R.id.member_list);
         memberRecyclerView.setHasFixedSize(true);
         memberRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        Log.d("AA", memberRecyclerView.toString());
 
-        memberList = new ArrayList<>();
-        memberList.add(new Member("Member Name 1", R.drawable.man, R.drawable.group_wait));
-        memberList.add(new Member("Member Name 2", R.drawable.woman, R.drawable.group_wait));
-        memberList.add(new Member("Member Name 3", R.drawable.man, R.drawable.group_wait));
-
-        MemberAdapter adapter = new MemberAdapter(this, memberList);
+        MemberAdapter adapter = new MemberAdapter(this, group.getGroupMembers());
         memberRecyclerView.setAdapter(adapter);
 
 

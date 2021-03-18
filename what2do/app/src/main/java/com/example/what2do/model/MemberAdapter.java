@@ -26,7 +26,6 @@ public class MemberAdapter extends RecyclerView.Adapter<MemberAdapter.MemberView
     public MemberAdapter(Context mCtx, List<Member> memberList) {
         this.mCtx = mCtx;
         this.memberList = memberList;
-        Log.d("AA", memberList.size() + "");
     }
 
     @NonNull
@@ -42,7 +41,7 @@ public class MemberAdapter extends RecyclerView.Adapter<MemberAdapter.MemberView
     public void onBindViewHolder(@NonNull MemberViewHolder holder, int position) {
         //getting the product of the specified position
         Member member = memberList.get(position);
-        Log.d("AA", member.getName());
+
         //binding the data with the viewholder views
         holder.memberName.setText(member.getName());
         holder.memberImage.setImageResource(member.getImage());

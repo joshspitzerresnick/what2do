@@ -3,39 +3,53 @@ package com.example.what2do.activities;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.what2do.R;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-public class ProfileActivity extends Activity implements View.OnClickListener {
+import com.example.what2do.R;
+import com.example.what2do.model.FakeBackend;
+import com.example.what2do.model.Group;
+import com.example.what2do.model.GroupAdapter;
+import com.example.what2do.model.Member;
+import com.example.what2do.model.MemberAdapter;
+import com.example.what2do.util.ButtonListener;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class ProfileActivity extends Activity implements View.OnClickListener, ButtonListener {
     public static final String GROUP_ID = "com.example.what2do.GROUP_ID";
-    private final int[] BUTTON_IDS = new int[] {
-            R.id.group_button1,
-            R.id.group_button2,
-            R.id.group_button3};
-    private Button[] groupButtons;
+
+    private RecyclerView groupRecyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        groupButtons = new Button[BUTTON_IDS.length];
-        for(int i = 0; i < groupButtons.length; i++) {
-            groupButtons[i] = findViewById(BUTTON_IDS[i]);
-            groupButtons[i].setOnClickListener(this);
-        }
+        groupRecyclerView = (RecyclerView)findViewById(R.id.group_list);
+        //groupRecyclerView.setHasFixedSize(true);
+        groupRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        FakeBackend.init();
+        GroupAdapter adapter = new GroupAdapter(this, FakeBackend.getGroups(), this);
+        groupRecyclerView.setAdapter(adapter);
     }
 
     @Override
     public void onClick(View view) {
-        for(int i = 0; i < groupButtons.length; i++) {
-            if(view.getId() == BUTTON_IDS[i]) {
-                Intent intent = new Intent(this, GroupActivity.class);
-                intent.putExtra(GROUP_ID, i);
-                startActivity(intent);
-            }
-        }
+
+    }
+
+    @Override
+    public void buttonClicked(int id) {
+        Log.d("AA", "button pressed " + id);
+        Intent intent = new Intent(this, GroupActivity.class);
+        intent.putExtra(GROUP_ID, id);
+        startActivity(intent);
     }
 }
