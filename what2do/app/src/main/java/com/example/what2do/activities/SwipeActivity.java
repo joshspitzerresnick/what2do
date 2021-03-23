@@ -193,11 +193,4 @@ public class SwipeActivity extends AppCompatActivity implements View.OnClickList
 
         }
     }
-
-    public void addActivity(String activityName) {
-        List<ItemModel> items = adapter.getItems();
-        items.add(new ItemModel(R.drawable.questionmark, activityName, "User Created Activity", 5f));
-        adapter.setItems(items);
-        cardStackView.setAdapter(adapter);
-    }
 }

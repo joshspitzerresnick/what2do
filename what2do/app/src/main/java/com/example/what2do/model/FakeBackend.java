@@ -75,4 +75,8 @@ public class FakeBackend {
     public static List<ItemModel> getGenres() {
         return genres;
     }
+
+    public static void addActivity(String activityName) {
+        activities.add(new ItemModel(R.drawable.questionmark, activityName, "User Created Activity", 5f));
+    }
 }
