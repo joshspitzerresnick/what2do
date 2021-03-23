@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -14,7 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 
 import com.example.what2do.R;
-import com.example.what2do.model.CardStackAdapter;
+import com.example.what2do.model.CardStackGenreAdapter;
 import com.example.what2do.model.FakeBackend;
 import com.example.what2do.model.ItemModel;
 import com.yuyakaido.android.cardstackview.CardStackLayoutManager;
@@ -32,11 +31,11 @@ import static com.yuyakaido.android.cardstackview.Direction.Left;
 import static com.yuyakaido.android.cardstackview.Direction.Right;
 import static com.yuyakaido.android.cardstackview.Direction.Top;
 
-public class SwipeActivity extends AppCompatActivity implements View.OnClickListener {
+public class SwipeGenreActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private static final String TAG = "SwipeActivity";
+    private static final String TAG = "SwipeGenreActivity";
     private CardStackLayoutManager manager;
-    private CardStackAdapter adapter;
+    private CardStackGenreAdapter adapter;
     private CardStackView cardStackView;
     private int superlikes = 1;
     private int bans = 1;
@@ -45,7 +44,7 @@ public class SwipeActivity extends AppCompatActivity implements View.OnClickList
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_swipe);
+        setContentView(R.layout.activity_genre_swipe);
 
         cardStackView = findViewById(R.id.card_stack_view);
         manager = new CardStackLayoutManager(this, new CardStackListener() {
@@ -58,32 +57,28 @@ public class SwipeActivity extends AppCompatActivity implements View.OnClickList
             public void onCardSwiped(Direction direction) {
                 //Log.d(TAG, "onCardSwiped: p=" + manager.getTopPosition() + " d=" + direction);
                 if (direction == Right) {
-                    //Toast.makeText(SwipeActivity.this, "Direction Right", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(SwipeGenreActivity.this, "Direction Right", Toast.LENGTH_SHORT).show();
                     swipes.add(1);
                 }
                 if (direction == Direction.Top) {
-                    //Toast.makeText(SwipeActivity.this, "Direction Top", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(SwipeGenreActivity.this, "Direction Top", Toast.LENGTH_SHORT).show();
                     superlikes--;
                     swipes.add(2);
                     TextView superlikesText = (TextView) findViewById(R.id.textView2);
                     superlikesText.setText(superlikes + " left");
                 }
                 if (direction == Left) {
-                    //Toast.makeText(SwipeActivity.this, "Direction Left", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(SwipeGenreActivity.this, "Direction Left", Toast.LENGTH_SHORT).show();
                     swipes.add(3);
                 }
                 if (direction == Direction.Bottom) {
-                    //Toast.makeText(SwipeActivity.this, "Direction Bottom", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(SwipeGenreActivity.this, "Direction Bottom", Toast.LENGTH_SHORT).show();
                     bans--;
                     TextView bansText = (TextView) findViewById(R.id.textView3);
                     bansText.setText(bans + " left");
                     swipes.add(4);
                 }
 
-                if (swipes.size() < adapter.getItems().size()) {
-                    RatingBar rating = (RatingBar) findViewById(R.id.ratingBar);
-                    rating.setRating(adapter.getItems().get(swipes.size()).getRating());
-                }
                 else if (swipes.size() == adapter.getItems().size()) {
                     setResult(RESULT_OK);
                     finish();
@@ -137,7 +132,7 @@ public class SwipeActivity extends AppCompatActivity implements View.OnClickList
         manager.setSwipeableMethod(SwipeableMethod.AutomaticAndManual);
         manager.setOverlayInterpolator(new LinearInterpolator());
         cardStackView.setLayoutManager(manager);
-        adapter = new CardStackAdapter(FakeBackend.getActivities());
+        adapter = new CardStackGenreAdapter(FakeBackend.getGenres());
         cardStackView.setAdapter(adapter);
         cardStackView.setItemAnimator(new DefaultItemAnimator());
 
@@ -148,9 +143,6 @@ public class SwipeActivity extends AppCompatActivity implements View.OnClickList
 
         ImageView imageView5 = (ImageView)findViewById(R.id.imageView5);
         imageView5.setOnClickListener(this);
-
-        RatingBar rating = (RatingBar) findViewById(R.id.ratingBar);
-        rating.setRating(adapter.getItems().get(swipes.size()).getRating());
 
         ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
         progressBar.setMax(adapter.getItems().size());
@@ -185,19 +177,10 @@ public class SwipeActivity extends AppCompatActivity implements View.OnClickList
             }
             manager.setDirections(dir);
 
-            RatingBar rating = (RatingBar) findViewById(R.id.ratingBar);
-            rating.setRating(adapter.getItems().get(swipes.size()).getRating());
-
             ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
             progressBar.incrementProgressBy(-1);
 
         }
     }
 
-    public void addActivity(String activityName) {
-        List<ItemModel> items = adapter.getItems();
-        items.add(new ItemModel(R.drawable.questionmark, activityName, "User Created Activity", 5f));
-        adapter.setItems(items);
-        cardStackView.setAdapter(adapter);
-    }
 }

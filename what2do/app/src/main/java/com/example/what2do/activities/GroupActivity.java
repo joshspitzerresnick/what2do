@@ -220,7 +220,7 @@ public class GroupActivity extends FragmentActivity implements View.OnClickListe
                 break;
             case SWIPE_GENRE_STARTED:
                 //show swipe activity
-                intent = new Intent(this, SwipeActivity.class);
+                intent = new Intent(this, SwipeGenreActivity.class);
                 startActivityForResult(intent, SWIPE_GENRE_REQUEST);
                 break;
             case SWIPE_GENRE_FINISHED:
