@@ -23,6 +23,7 @@
         <activity android:name=".activities.FactorsActivity" />
         <activity android:name=".activities.SwipeActivity" />
         <activity android:name=".activities.MatchesActivity" />
+        <activity android:name=".activities.SingleMatchActivity" />
     </application>
 
 </manifest>
