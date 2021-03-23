@@ -7,6 +7,9 @@ import java.util.List;
 
 public class FakeBackend {
     private static List<Group> groups;
+    private static List<Match> matches; //holds top 3
+    // need genres list
+    //activities lists for genres
 
     public static void init() {
         if(groups != null) {

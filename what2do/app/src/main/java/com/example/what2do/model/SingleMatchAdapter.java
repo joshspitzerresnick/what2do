@@ -33,7 +33,8 @@ public class SingleMatchAdapter extends RecyclerView.Adapter<SingleMatchAdapter.
     public SingleMatchViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         //inflating and returning our view holder
         LayoutInflater inflater = LayoutInflater.from(mCtx);
-        View view = inflater.inflate(R.layout.activity_matches, null);
+        View view = inflater.inflate(R.layout.layout_single_match, null);
+        //View view = inflater.inflate(R.layout.activity_matches, null);
         return new SingleMatchViewHolder(view);
     }
 
@@ -44,11 +45,16 @@ public class SingleMatchAdapter extends RecyclerView.Adapter<SingleMatchAdapter.
 
         //binding the data with the viewholder views
         holder.textViewTitle.setText(match.getTitle());
-        holder.textViewShortDesc.setText(match.getShortdesc());
-        holder.textViewRating.setText(String.valueOf(match.getRating()));
-        holder.textViewPercentage.setText(String.valueOf(match.getPercentage()));
+//        holder.textViewShortDesc.setText(match.getShortdesc());
+//        holder.textViewRating.setText(String.valueOf(match.getRating()));
+//        holder.textViewPercentage.setText(String.valueOf(match.getPercentage()));
+        holder.textViewPhone.setText(String.valueOf(match.getPhoneNum()));
+        holder.textViewLoc1.setText(String.valueOf(match.getLocation1()));
+        holder.textViewLoc2.setText(String.valueOf(match.getLocation2()));
+        holder.textViewWeb.setText(String.valueOf(match.getWebsite()));
 
         holder.imageView.setImageDrawable(mCtx.getResources().getDrawable(match.getImage()));
+
 
     }
 
@@ -61,7 +67,7 @@ public class SingleMatchAdapter extends RecyclerView.Adapter<SingleMatchAdapter.
 
     class SingleMatchViewHolder extends RecyclerView.ViewHolder {
 
-        TextView textViewTitle, textViewShortDesc, textViewRating, textViewPercentage;
+        TextView textViewTitle, textViewShortDesc, textViewRating, textViewPercentage, textViewPhone, textViewLoc1, textViewLoc2, textViewWeb;
         ImageView imageView;
 
         public SingleMatchViewHolder(View itemView) {
@@ -72,6 +78,11 @@ public class SingleMatchAdapter extends RecyclerView.Adapter<SingleMatchAdapter.
             textViewRating = itemView.findViewById(R.id.textViewRating);
             textViewPercentage = itemView.findViewById(R.id.textViewPercentage);
             imageView = itemView.findViewById(R.id.matchImage);
+            textViewPhone = itemView.findViewById(R.id.textViewPhone);
+            textViewLoc1 = itemView.findViewById(R.id.textViewLoc1);
+            textViewLoc2 = itemView.findViewById(R.id.textViewLoc2);
+            textViewWeb = itemView.findViewById(R.id.textViewWeb);
+
         }
     }
 }

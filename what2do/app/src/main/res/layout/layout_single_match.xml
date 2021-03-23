@@ -7,8 +7,8 @@
     android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="411dp"
+        android:layout_height="328dp"
         android:layout_margin="5dp">
 
         <Button
@@ -19,12 +19,12 @@
             app:backgroundTint="#F44336" />
 
         <TextView
-            android:id="@+id/placeName"
+            android:id="@+id/textViewTitle"
             android:layout_width="200dp"
             android:layout_height="50dp"
             android:layout_marginStart="100dp"
             android:layout_marginLeft="100dp"
-            android:layout_marginTop="250dp"
+            android:layout_marginTop="260dp"
             android:text="APPLEBEES"
             app:autoSizeTextType="uniform" />
 
@@ -38,7 +38,8 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="817dp"
-        android:layout_height="544dp">
+        android:layout_height="400dp"
+        android:layout_marginBottom="0dp">
 
         <ImageView
             android:id="@+id/phoneNumber"
@@ -68,17 +69,16 @@
             app:srcCompat="@drawable/website" />
 
         <TextView
-            android:id="@+id/phoneNumText"
+            android:id="@+id/textViewPhone"
             android:layout_width="208dp"
             android:layout_height="52dp"
             android:layout_marginStart="130dp"
             android:layout_marginLeft="130dp"
             android:layout_marginTop="80dp"
-            android:text="(XXX) XXX-XXXX"
             app:autoSizeTextType="uniform" />
 
         <TextView
-            android:id="@+id/websiteText"
+            android:id="@+id/textViewWeb"
             android:layout_width="208dp"
             android:layout_height="52dp"
             android:layout_marginStart="130dp"
@@ -88,7 +88,7 @@
             app:autoSizeTextType="uniform" />
 
         <TextView
-            android:id="@+id/locationText"
+            android:id="@+id/textViewLoc1"
             android:layout_width="208dp"
             android:layout_height="52dp"
             android:layout_marginStart="130dp"
@@ -98,7 +98,7 @@
             app:autoSizeTextType="uniform" />
 
         <TextView
-            android:id="@+id/locationText2"
+            android:id="@+id/textViewLoc2"
             android:layout_width="208dp"
             android:layout_height="52dp"
             android:layout_marginStart="130dp"
