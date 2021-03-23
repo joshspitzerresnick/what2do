@@ -31,8 +31,7 @@ public class SingleMatchActivity extends Activity implements View.OnClickListene
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.backButton) {
-            Intent intent = new Intent(this, MatchesActivity.class);
-            startActivity(intent);
+            finish();
         }
     }
 

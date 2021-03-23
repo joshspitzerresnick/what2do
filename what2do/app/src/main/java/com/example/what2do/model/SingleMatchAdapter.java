@@ -81,7 +81,7 @@ public class SingleMatchAdapter extends RecyclerView.Adapter<SingleMatchAdapter.
             textViewPhone = itemView.findViewById(R.id.textViewPhone);
             textViewLoc1 = itemView.findViewById(R.id.textViewLoc1);
             textViewLoc2 = itemView.findViewById(R.id.textViewLoc2);
-            textViewWeb = itemView.findViewById(R.id.textViewWeb);
+            textViewWeb = itemView.findViewById(R.id.textViewWebsite);
 
         }
     }
