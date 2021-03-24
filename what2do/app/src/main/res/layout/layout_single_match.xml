@@ -3,40 +3,58 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="411dp"
-        android:layout_height="720dp"
-        android:layout_margin="5dp">
+
+    <!--    <androidx.cardview.widget.CardView-->
+    <!--        android:layout_width="411dp"-->
+    <!--        android:layout_height="720dp"-->
+    <!--        android:layout_margin="5dp">-->
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
         <Button
             android:id="@+id/backButton"
             android:layout_width="80dp"
             android:layout_height="52dp"
             android:text="Back"
-            app:backgroundTint="#F44336" />
-
-        <TextView
-            android:id="@+id/textViewTitle"
-            android:layout_width="290dp"
-            android:layout_height="60dp"
-            android:layout_marginStart="100dp"
-            android:layout_marginLeft="100dp"
-            android:layout_marginTop="10dp"
-            android:fontFamily="sans-serif-black"
-            android:text="APPLEBEES"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-            android:textSize="36sp"
-            app:autoSizeTextType="uniform" />
+            app:backgroundTint="#514A4747"></Button>
 
         <ImageView
             android:id="@+id/matchImage"
             android:layout_width="match_parent"
-            android:layout_height="320dp"
-            android:layout_marginTop="45dp"
+            android:layout_height="300dp"
+            android:layout_marginTop="60dp"
+            android:scaleType="centerCrop"
             app:srcCompat="@drawable/applebees" />
+
+        <TextView
+            android:id="@+id/textViewTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="50dp"
+            android:textColor="#050000"
+            android:textSize="40sp" />
+
+        <!--            android:layout_width="290dp"-->
+        <!--            android:layout_height="60dp"-->
+        <!--            android:layout_marginStart="100dp"-->
+        <!--            android:layout_marginLeft="100dp"-->
+        <!--            android:layout_marginTop="10dp"-->
+        <!--            android:fontFamily="sans-serif-black"-->
+        <!--            android:text="APPLEBEES"-->
+        <!--            android:textAppearance="@style/TextAppearance.AppCompat.Body2"-->
+        <!--            android:textSize="36sp"-->
+        <!--            app:autoSizeTextType="uniform" />-->
+
 
         <ImageView
             android:id="@+id/phoneNumber"
@@ -72,7 +90,6 @@
             android:layout_marginStart="130dp"
             android:layout_marginLeft="130dp"
             android:layout_marginTop="485dp"
-            android:text="www.restaurant.com"
             app:autoSizeTextType="uniform" />
 
         <TextView
@@ -82,7 +99,6 @@
             android:layout_marginStart="130dp"
             android:layout_marginLeft="130dp"
             android:layout_marginTop="560dp"
-            android:text="5555 Fake Street"
             app:autoSizeTextType="uniform" />
 
         <TextView
@@ -92,7 +108,6 @@
             android:layout_marginStart="130dp"
             android:layout_marginLeft="130dp"
             android:layout_marginTop="590dp"
-            android:text="Fake City, NN 55555"
             app:autoSizeTextType="uniform" />
 
         <ImageView
@@ -106,9 +121,109 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
-            android:layout_width="451dp"
-            android:layout_height="736dp" />
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
-    </androidx.cardview.widget.CardView>
+        <!--    </androidx.cardview.widget.CardView>-->
+        <!--=======-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:orientation="vertical"-->
+        <!--            android:layout_below="@id/textViewTitle">-->
+        <!---->
+        <!--            <RelativeLayout-->
+        <!--                android:layout_width="match_parent"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:layout_marginLeft="60dp"-->
+        <!--                android:layout_marginRight="60dp">-->
+        <!---->
+        <!--                <ImageView-->
+        <!--                    android:id="@+id/phoneNumber"-->
+        <!--                    android:layout_width="60dp"-->
+        <!--                    android:layout_height="60dp"-->
+        <!--                    android:layout_alignParentLeft="true"-->
+        <!--                    android:layout_centerVertical="true"-->
+        <!--                    tools:srcCompat="@drawable/applephone" />-->
+        <!---->
+        <!--                <TextView-->
+        <!--                    android:id="@+id/textViewPhone"-->
+        <!--                    android:layout_width="wrap_content"-->
+        <!--                    android:layout_height="40dp"-->
+        <!--                    android:layout_marginLeft="15dp"-->
+        <!--                    android:text="999-999-9999"-->
+        <!--                    android:layout_toRightOf="@id/phoneNumber"-->
+        <!--                    android:layout_alignParentRight="true"-->
+        <!--                    android:layout_centerVertical="true"-->
+        <!--                    app:autoSizeTextType="uniform" />-->
+        <!---->
+        <!--            </RelativeLayout>-->
+        <!---->
+        <!--            <RelativeLayout-->
+        <!--                android:layout_width="match_parent"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:layout_marginLeft="60dp"-->
+        <!--                android:layout_marginRight="60dp"-->
+        <!--                android:layout_marginTop="10dp">-->
+        <!---->
+        <!--                <ImageView-->
+        <!--                    android:id="@+id/websiteIcon"-->
+        <!--                    android:layout_width="60dp"-->
+        <!--                    android:layout_height="60dp"-->
+        <!--                    android:layout_alignParentLeft="true"-->
+        <!--                    android:layout_centerVertical="true"-->
+        <!--                    tools:srcCompat="@drawable/website" />-->
+        <!---->
+        <!--                <TextView-->
+        <!--                    android:id="@+id/textViewWebsite"-->
+        <!--                    android:layout_width="wrap_content"-->
+        <!--                    android:layout_height="35dp"-->
+        <!--                    android:layout_marginLeft="15dp"-->
+        <!--                    android:text="www.restaurant.com"-->
+        <!--                    android:layout_toRightOf="@id/websiteIcon"-->
+        <!--                    android:layout_alignParentRight="true"-->
+        <!--                    android:layout_centerVertical="true"-->
+        <!--                    app:autoSizeTextType="uniform" />-->
+        <!---->
+        <!--            </RelativeLayout>-->
+        <!---->
+        <!--            <RelativeLayout-->
+        <!--                android:layout_width="match_parent"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:layout_marginLeft="60dp"-->
+        <!--                android:layout_marginRight="60dp"-->
+        <!--                android:layout_marginTop="10dp">-->
+        <!---->
+        <!--                <ImageView-->
+        <!--                    android:id="@+id/locationIcon"-->
+        <!--                    android:layout_width="60dp"-->
+        <!--                    android:layout_height="60dp"-->
+        <!--                    android:layout_alignParentLeft="true"-->
+        <!--                    android:layout_centerVertical="true"-->
+        <!--                    tools:srcCompat="@drawable/preference_location" />-->
+        <!---->
+        <!--                <TextView-->
+        <!--                    android:id="@+id/textViewLoc1"-->
+        <!--                    android:layout_width="wrap_content"-->
+        <!--                    android:layout_height="36dp"-->
+        <!--                    android:layout_marginLeft="15dp"-->
+        <!--                    android:text="555 Fake Street"-->
+        <!--                    android:layout_toRightOf="@id/locationIcon"-->
+        <!--                    android:layout_alignParentRight="true"-->
+        <!--                    android:layout_alignParentTop="true"-->
+        <!--                    app:autoSizeTextType="uniform" />-->
+        <!---->
+        <!--                <TextView-->
+        <!--                    android:id="@+id/textViewLoc2"-->
+        <!--                    android:layout_width="wrap_content"-->
+        <!--                    android:layout_height="28dp"-->
+        <!--                    android:layout_marginLeft="15dp"-->
+        <!--                    android:text="Fake City, NN 55555"-->
+        <!--                    android:layout_toRightOf="@id/locationIcon"-->
+        <!--                    android:layout_alignParentRight="true"-->
+        <!--                    android:layout_below="@+id/textViewLoc1"-->
+        <!--                    app:autoSizeTextType="uniform" />-->
+        <!-->>>>>>> 994548248dfc3da4dcb1ccfc4ad9a53514a7ad09-->
 
+    </RelativeLayout>
 </LinearLayout>
+<!--    </RelativeLayout>-->
+<!--</LinearLayout>-->

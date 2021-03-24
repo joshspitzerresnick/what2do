@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.what2do.R;
 import com.example.what2do.activities.GroupActivity;
+import com.example.what2do.model.FakeBackend;
 
 public class FinishedSwipeGenreFragment extends Fragment implements View.OnClickListener {
     private FragmentState state;
@@ -40,6 +41,7 @@ public class FinishedSwipeGenreFragment extends Fragment implements View.OnClick
     public void onClick(View view) {
         if(view.getId() == R.id.propose_custom_activity) {
             state.setState(GroupActivity.PROPOSE_CUSTOM_ACTIVITY_PRESSED);
+            FakeBackend.addActivity("Custom Activity");
         } else if(view.getId() == R.id.cancel_swiping) {
             state.setState(GroupActivity.CANCEL_SWIPING_PRESSED);
         } else if(view.getId() == R.id.ready_up) {

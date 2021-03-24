@@ -25,8 +25,7 @@ public class MatchesActivity extends Activity implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.matches_done) {
-            Intent intent = new Intent(this, ProfileActivity.class);
-            startActivity(intent);
+            finish();
         }
     }
 
