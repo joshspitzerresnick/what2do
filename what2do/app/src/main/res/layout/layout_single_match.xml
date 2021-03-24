@@ -8,38 +8,35 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="411dp"
-        android:layout_height="328dp"
+        android:layout_height="720dp"
         android:layout_margin="5dp">
 
         <Button
             android:id="@+id/backButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="80dp"
+            android:layout_height="52dp"
             android:text="Back"
             app:backgroundTint="#F44336" />
 
         <TextView
             android:id="@+id/textViewTitle"
-            android:layout_width="200dp"
-            android:layout_height="50dp"
+            android:layout_width="290dp"
+            android:layout_height="60dp"
             android:layout_marginStart="100dp"
             android:layout_marginLeft="100dp"
-            android:layout_marginTop="260dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="sans-serif-black"
             android:text="APPLEBEES"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textSize="36sp"
             app:autoSizeTextType="uniform" />
 
         <ImageView
             android:id="@+id/matchImage"
             android:layout_width="match_parent"
-            android:layout_height="289dp"
+            android:layout_height="320dp"
+            android:layout_marginTop="45dp"
             app:srcCompat="@drawable/applebees" />
-
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:layout_width="817dp"
-        android:layout_height="400dp"
-        android:layout_marginBottom="0dp">
 
         <ImageView
             android:id="@+id/phoneNumber"
@@ -47,25 +44,16 @@
             android:layout_height="50dp"
             android:layout_marginStart="60dp"
             android:layout_marginLeft="60dp"
-            android:layout_marginTop="80dp"
+            android:layout_marginTop="380dp"
             tools:srcCompat="@drawable/applephone" />
 
         <ImageView
-            android:id="@+id/locationIcon"
+            android:id="@+id/webIcon"
             android:layout_width="54dp"
             android:layout_height="50dp"
             android:layout_marginStart="60dp"
             android:layout_marginLeft="60dp"
-            android:layout_marginTop="220dp"
-            app:srcCompat="@drawable/preference_location" />
-
-        <ImageView
-            android:id="@+id/locationIcon2"
-            android:layout_width="54dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="60dp"
-            android:layout_marginLeft="60dp"
-            android:layout_marginTop="150dp"
+            android:layout_marginTop="470dp"
             app:srcCompat="@drawable/website" />
 
         <TextView
@@ -74,7 +62,7 @@
             android:layout_height="52dp"
             android:layout_marginStart="130dp"
             android:layout_marginLeft="130dp"
-            android:layout_marginTop="80dp"
+            android:layout_marginTop="395dp"
             app:autoSizeTextType="uniform" />
 
         <TextView
@@ -83,7 +71,7 @@
             android:layout_height="52dp"
             android:layout_marginStart="130dp"
             android:layout_marginLeft="130dp"
-            android:layout_marginTop="150dp"
+            android:layout_marginTop="485dp"
             android:text="www.restaurant.com"
             app:autoSizeTextType="uniform" />
 
@@ -93,7 +81,7 @@
             android:layout_height="52dp"
             android:layout_marginStart="130dp"
             android:layout_marginLeft="130dp"
-            android:layout_marginTop="220dp"
+            android:layout_marginTop="560dp"
             android:text="5555 Fake Street"
             app:autoSizeTextType="uniform" />
 
@@ -103,9 +91,24 @@
             android:layout_height="52dp"
             android:layout_marginStart="130dp"
             android:layout_marginLeft="130dp"
-            android:layout_marginTop="260dp"
+            android:layout_marginTop="590dp"
             android:text="Fake City, NN 55555"
             app:autoSizeTextType="uniform" />
+
+        <ImageView
+            android:id="@+id/locationIcon"
+            android:layout_width="54dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="60dp"
+            android:layout_marginLeft="60dp"
+            android:layout_marginTop="560dp"
+            app:srcCompat="@drawable/preference_location" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="451dp"
+            android:layout_height="736dp" />
+
     </androidx.cardview.widget.CardView>
 
 </LinearLayout>

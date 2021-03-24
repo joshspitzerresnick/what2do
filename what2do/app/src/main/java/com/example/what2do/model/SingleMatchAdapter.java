@@ -33,8 +33,8 @@ public class SingleMatchAdapter extends RecyclerView.Adapter<SingleMatchAdapter.
     public SingleMatchViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         //inflating and returning our view holder
         LayoutInflater inflater = LayoutInflater.from(mCtx);
+        //View view = inflater.inflate(R.layout.layout_matches, null);
         View view = inflater.inflate(R.layout.layout_single_match, null);
-        //View view = inflater.inflate(R.layout.activity_matches, null);
         return new SingleMatchViewHolder(view);
     }
 
@@ -54,6 +54,9 @@ public class SingleMatchAdapter extends RecyclerView.Adapter<SingleMatchAdapter.
         holder.textViewWeb.setText(String.valueOf(match.getWebsite()));
 
         holder.imageView.setImageDrawable(mCtx.getResources().getDrawable(match.getImage()));
+        holder.phoneImg.setImageDrawable(mCtx.getResources().getDrawable(R.drawable.applephone));
+        holder.webImg.setImageDrawable(mCtx.getResources().getDrawable(R.drawable.website));
+        holder.locImg.setImageDrawable(mCtx.getResources().getDrawable(R.drawable.preference_location));
 
 
     }
@@ -68,16 +71,20 @@ public class SingleMatchAdapter extends RecyclerView.Adapter<SingleMatchAdapter.
     class SingleMatchViewHolder extends RecyclerView.ViewHolder {
 
         TextView textViewTitle, textViewShortDesc, textViewRating, textViewPercentage, textViewPhone, textViewLoc1, textViewLoc2, textViewWeb;
-        ImageView imageView;
+        ImageView imageView, locImg, webImg, phoneImg;
 
         public SingleMatchViewHolder(View itemView) {
             super(itemView);
 
             textViewTitle = itemView.findViewById(R.id.textViewTitle);
-            textViewShortDesc = itemView.findViewById(R.id.textViewShortDesc);
-            textViewRating = itemView.findViewById(R.id.textViewRating);
-            textViewPercentage = itemView.findViewById(R.id.textViewPercentage);
+//            textViewShortDesc = itemView.findViewById(R.id.textViewShortDesc);
+//            textViewRating = itemView.findViewById(R.id.textViewRating);
+//            textViewPercentage = itemView.findViewById(R.id.textViewPercentage);
             imageView = itemView.findViewById(R.id.matchImage);
+            locImg = itemView.findViewById(R.id.locationIcon);
+            webImg =  itemView.findViewById(R.id.webIcon);
+            phoneImg = itemView.findViewById(R.id.phoneNumber);
+
             textViewPhone = itemView.findViewById(R.id.textViewPhone);
             textViewLoc1 = itemView.findViewById(R.id.textViewLoc1);
             textViewLoc2 = itemView.findViewById(R.id.textViewLoc2);

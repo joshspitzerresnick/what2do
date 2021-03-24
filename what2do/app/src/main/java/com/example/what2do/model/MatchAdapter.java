@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 
 import com.example.what2do.R;
+import com.example.what2do.activities.MatchesActivity;
 import com.example.what2do.activities.SingleMatchActivity;
 
 import java.util.List;
@@ -25,6 +26,8 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MatchViewHol
 
     //we are storing all the matches in a list
     private List<Match> matchList;
+   // protected List<Match> matchSingle;
+    protected List<Match> matches;
 
     //getting the context and match list with constructor
     public MatchAdapter(Context mCtx, List<Match> matchList) {
@@ -55,7 +58,6 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MatchViewHol
 
     }
 
-
     @Override
     public int getItemCount() {
         return matchList.size();
@@ -82,25 +84,24 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MatchViewHol
         public void onClick(View view) {
             //Toast.makeText(view.getContext(), "position = " + getLayoutPosition(), Toast.LENGTH_SHORT).show();
 
+            matches = FakeBackend.getMatches();
+
             //go through each item if you have few items within recycler view
             if (getLayoutPosition() == 0) {
-                Match m = matchList.get(0);
-//                SingleMatchActivity sa = new SingleMatchActivity();
-//                sa.addMatch(m);
+                Match m = matches.get(0);
+                FakeBackend.setMatch(m);
                 Intent intent = new Intent(view.getContext(), SingleMatchActivity.class);
                 mCtx.startActivity(intent);
             }
             else if (getLayoutPosition() == 1) {
-                Match m1 = matchList.get(1);
-//                SingleMatchActivity sa = new SingleMatchActivity();
-//                sa.addMatch(m1);
+                Match m1 = matches.get(1);
+                FakeBackend.setMatch(m1);
                 Intent intent = new Intent(view.getContext(), SingleMatchActivity.class);
                 mCtx.startActivity(intent);
             }
             else if (getLayoutPosition() == 2) {
-                Match m2 = matchList.get(2);
-//                SingleMatchActivity sa = new SingleMatchActivity();
-//                sa.addMatch(m2);
+                Match m2 = matches.get(2);
+                FakeBackend.setMatch(m2);
                 Intent intent = new Intent(view.getContext(), SingleMatchActivity.class);
                 mCtx.startActivity(intent);
             }

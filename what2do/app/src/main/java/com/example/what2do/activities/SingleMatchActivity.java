@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.what2do.R;
+import com.example.what2do.model.FakeBackend;
 import com.example.what2do.model.Match;
 import com.example.what2do.model.SingleMatchAdapter;
 
@@ -18,16 +19,8 @@ import java.util.List;
 
 public class SingleMatchActivity extends Activity implements View.OnClickListener {
     private Button backButton;
+    private List<Match> matchList;
 
-    //    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_matches);
-//
-//        done = findViewById(R.id.matches_done);
-//        done.setOnClickListener(this);
-//    }
-//
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.backButton) {
@@ -36,12 +29,8 @@ public class SingleMatchActivity extends Activity implements View.OnClickListene
         }
     }
 
-
-    //a list to store all the matches
-    List<Match> matchList;
-
-//    //the recyclerview
-//    RecyclerView recyclerView;
+    //the recyclerview
+    RecyclerView singleRecyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,34 +39,20 @@ public class SingleMatchActivity extends Activity implements View.OnClickListene
         backButton = findViewById(R.id.backButton);
         backButton.setOnClickListener(this);
 
-//        //getting the recyclerview from xml
-//        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
-//        recyclerView.setHasFixedSize(true);
-//        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        //getting the recyclerview from xml
+        singleRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        //recyclerView.setHasFixedSize(true);
+        singleRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         //initializing the matchlist
-        matchList = new ArrayList<>();
-
-        matchList.add(
-                new Match(
-                        1,
-                        "Applebees",
-                        "American Food",
-                        "Rating: 3.8/5.0",
-                        "98% match",
-                        R.drawable.applebees,
-                        "123 Baker St.",
-                        "This City, MM 55555",
-                        "(XXX) XXX-XXXX",
-                        "www.thiswebsite.com"));
-
-
+          matchList = new ArrayList<>();
+          matchList.add(FakeBackend.getMatch());
 
         //creating recyclerview adapter
         SingleMatchAdapter adapter = new SingleMatchAdapter(this, matchList);
-//
-//        //setting adapter to recyclerview
-//        recyclerView.setAdapter(adapter);
+
+        //setting adapter to recyclerview
+       singleRecyclerView.setAdapter(adapter);
     }
 }
 
