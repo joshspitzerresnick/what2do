@@ -9,17 +9,15 @@ import android.widget.Button;
 import com.example.what2do.R;
 
 public class FactorsActivity extends Activity implements View.OnClickListener {
-    private Button doneButton, cancelButton;
+    private Button readyButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_factors);
 
-        doneButton = findViewById(R.id.factors_done);
-        doneButton.setOnClickListener(this);
-        cancelButton = findViewById(R.id.factors_cancel);
-        cancelButton.setOnClickListener(this);
+        readyButton = findViewById(R.id.factors_done);
+        readyButton.setOnClickListener(this);
     }
 
     @Override
@@ -29,10 +27,6 @@ public class FactorsActivity extends Activity implements View.OnClickListener {
             setResult(RESULT_OK);
             finish();
             //finishActivity(RESULT_OK);
-        } else if(view.getId() == R.id.factors_cancel) {
-            setResult(RESULT_CANCELED);
-            finish();
-            //finishActivity(RESULT_CANCELED);
         }
     }
 }
