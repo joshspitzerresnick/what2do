@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">what2do</string>
+    <string name="factorspop">Once you set these preferences, you won\'t be able to change them unless you cancel the activity and start over</string>
 </resources>
