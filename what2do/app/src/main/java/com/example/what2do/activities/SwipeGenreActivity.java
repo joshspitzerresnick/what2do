@@ -1,5 +1,6 @@
 package com.example.what2do.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -144,6 +145,9 @@ public class SwipeGenreActivity extends AppCompatActivity implements View.OnClic
         ImageView imageView5 = (ImageView)findViewById(R.id.imageView5);
         imageView5.setOnClickListener(this);
 
+        ImageView imageView6 = (ImageView)findViewById(R.id.imageView6);
+        imageView6.setOnClickListener(this);
+
         ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
         progressBar.setMax(adapter.getItems().size());
         progressBar.setProgress(0);
@@ -181,6 +185,9 @@ public class SwipeGenreActivity extends AppCompatActivity implements View.OnClic
             progressBar.incrementProgressBy(-1);
 
         }
+        else if (v.getId() == R.id.imageView6) {
+            Intent intent = new Intent(this, SwipeInfoActivity.class);
+            startActivity(intent);
+        }
     }
-
 }
