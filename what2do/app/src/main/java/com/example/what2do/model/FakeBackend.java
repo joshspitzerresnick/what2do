@@ -94,19 +94,14 @@ public class FakeBackend {
                         "www.mcdonalds.com"));
 
         genres = new ArrayList<>();
-        genres.add(new ItemModel(R.drawable.fiveguys, "Sports", "", 0f));
-        genres.add(new ItemModel(R.drawable.mcdonalds2, "Movies", "", 0f));
-        genres.add(new ItemModel(R.drawable.pizzahut, "Eating Out", "", 0f));
-        genres.add(new ItemModel(R.drawable.subway, "Genre 4", "", 0f));
-        genres.add(new ItemModel(R.drawable.tacobell, "Genre 5", "", 0f));
+        genres.add(new ItemModel(R.drawable.eat, "Eating Out", "", 0f));
+        genres.add(new ItemModel(R.drawable.movie, "Movies", "", 0f));
+        genres.add(new ItemModel(R.drawable.indoors, "Indoors", "", 0f));
+        genres.add(new ItemModel(R.drawable.outdoors_active, "Outdoors - Active", "", 0f));
+        genres.add(new ItemModel(R.drawable.outdoors_casual, "Outdoors - Casual", "", 0f));
+
 
         activities = new ArrayList<>();
-
-        List<ItemModel> sports = new ArrayList<>();
-        sports.add(new ItemModel(R.drawable.fiveguys, "Soccer", "", 3.7f));
-
-        List<ItemModel> movies = new ArrayList<>();
-        movies.add(new ItemModel(R.drawable.fiveguys, "The Godfather", "", 5.0f));
 
         List<ItemModel> eating_out = new ArrayList<>();
         eating_out.add(new ItemModel(R.drawable.fiveguys, "Five Guys", "1 mi, $", 4.2f));
@@ -115,12 +110,32 @@ public class FakeBackend {
         eating_out.add(new ItemModel(R.drawable.subway, "Subway", "3.9 mi, $", 3.9f));
         eating_out.add(new ItemModel(R.drawable.tacobell, "Taco Bell", "6.7 mi, $", 3.2f));
 
-        // Add the other genres here and add them to the activities list
+        List<ItemModel> movies = new ArrayList<>();
+        movies.add(new ItemModel(R.drawable.nomadland, "Nomadland", "R", 4.7f));
 
-        activities.add(sports);
-        activities.add(movies);
+        List<ItemModel> indoors = new ArrayList<>();
+        indoors.add(new ItemModel(R.drawable.escape, "Escape Room", "", 0f));
+        indoors.add(new ItemModel(R.drawable.bowling, "Bowling", "", 0f));
+        indoors.add(new ItemModel(R.drawable.museum, "Art Museum", "", 0f));
+        indoors.add(new ItemModel(R.drawable.laser, "Laser Tag", "", 0f));
+
+        List<ItemModel> outdoors_active = new ArrayList<>();
+        outdoors_active.add(new ItemModel(R.drawable.bike, "Biking", "", 0f));
+        outdoors_active.add(new ItemModel(R.drawable.kayak, "Kayaking", "", 0f));
+        outdoors_active.add(new ItemModel(R.drawable.hiking, "Hiking", "", 0f));
+        outdoors_active.add(new ItemModel(R.drawable.fish, "Fishing", "", 0f));
+
+
+        List<ItemModel> outdoors_casual = new ArrayList<>();
+        outdoors_casual.add(new ItemModel(R.drawable.picnic, "Picnic", "", 0f));
+        outdoors_casual.add(new ItemModel(R.drawable.beach, "Beach", "", 0f));
+
+
         activities.add(eating_out);
-
+        activities.add(movies);
+        activities.add(indoors);
+        activities.add(outdoors_active);
+        activities.add(outdoors_casual);
 
     }
 
