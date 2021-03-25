@@ -18,15 +18,15 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
         profileButton = findViewById(R.id.profile_button);
         profileButton.setOnClickListener(this);
+
+        Intent intent = new Intent(this, ProfileActivity.class);
+        startActivity(intent);
     }
 
     @Override
     public void onClick(View view) {
         if(view.getId() == R.id.profile_button) {
             Intent intent = new Intent(this, ProfileActivity.class);
-            //EditText editText = (EditText) findViewById((R.id.editText));
-            //String message = editText.getText().toString();
-            //intent.putExtra(EXTRA_MESSAGE, message);
             startActivity(intent);
         }
     }
