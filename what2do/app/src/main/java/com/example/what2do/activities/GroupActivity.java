@@ -121,6 +121,7 @@ public class GroupActivity extends FragmentActivity implements View.OnClickListe
                     setUserState(GroupState.SWIPE_ACTIVITY_STARTED);
                     break;
                 case PROPOSE_CUSTOM_ACTIVITY_PRESSED:
+
                     break;
                 case SWIPE_AGAIN_PRESSED:
                     setUserState(GroupState.SWIPE_ACTIVITY_STARTED);
