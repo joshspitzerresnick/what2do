@@ -113,11 +113,11 @@
         <ImageView
             android:id="@+id/locationIcon"
             android:layout_width="54dp"
-            android:layout_height="50dp"
+            android:layout_height="60dp"
             android:layout_marginStart="60dp"
             android:layout_marginLeft="60dp"
             android:layout_marginTop="560dp"
-            app:srcCompat="@drawable/preference_location" />
+            app:srcCompat="@drawable/location" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"

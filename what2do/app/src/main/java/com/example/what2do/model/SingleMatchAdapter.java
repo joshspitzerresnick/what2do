@@ -56,7 +56,7 @@ public class SingleMatchAdapter extends RecyclerView.Adapter<SingleMatchAdapter.
         holder.imageView.setImageDrawable(mCtx.getResources().getDrawable(match.getImage()));
         holder.phoneImg.setImageDrawable(mCtx.getResources().getDrawable(R.drawable.applephone));
         holder.webImg.setImageDrawable(mCtx.getResources().getDrawable(R.drawable.website));
-        holder.locImg.setImageDrawable(mCtx.getResources().getDrawable(R.drawable.preference_location));
+        holder.locImg.setImageDrawable(mCtx.getResources().getDrawable(R.drawable.location));
 
 
     }

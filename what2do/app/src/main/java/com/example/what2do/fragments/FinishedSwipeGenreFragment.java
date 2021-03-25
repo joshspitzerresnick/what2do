@@ -1,10 +1,14 @@
 package com.example.what2do.fragments;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -17,8 +21,9 @@ import com.example.what2do.model.FakeBackend;
 
 public class FinishedSwipeGenreFragment extends Fragment implements View.OnClickListener {
     private FragmentState state;
-
     private Button proposeCustomActivityButton, cancelSwipingButton, readyUpButton;
+
+    private String m_text;
 
     @Nullable
     @Override
@@ -36,6 +41,38 @@ public class FinishedSwipeGenreFragment extends Fragment implements View.OnClick
 
         state = new ViewModelProvider(requireActivity()).get(FragmentState.class);
         state.setState(GroupActivity.NONE);
+
+
+//        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+//        builder.setTitle("Title");
+//        // I'm using fragment here so I'm using getView() to provide ViewGroup
+//        // but you can provide here any other instance of ViewGroup from your Fragment / Activity
+//        View viewInflated = LayoutInflater.from(getContext()).inflate(R.layout.text_inpu_password, (ViewGroup) getView(), false);
+//        // Set up the input
+//        final EditText input = (EditText) viewInflated.findViewById(R.id.input);
+//        // Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
+//        builder.setView(viewInflated);
+//
+//        // Set up the buttons
+//        builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//                dialog.dismiss();
+//                m_text = input.getText().toString();
+//            }
+//        });
+//        builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//                dialog.cancel();
+//            }
+//        });
+//
+//        builder.show();
+
+
+
+
         return view;
     }
 
@@ -43,11 +80,31 @@ public class FinishedSwipeGenreFragment extends Fragment implements View.OnClick
     public void onClick(View view) {
         if(view.getId() == R.id.propose_custom_activity) {
             state.setState(GroupActivity.PROPOSE_CUSTOM_ACTIVITY_PRESSED);
-            FakeBackend.addActivity("Custom Activity");
+            showInputDialog(getContext());
+            //FakeBackend.addActivity("Custom Activity");
         } else if(view.getId() == R.id.cancel_swiping) {
             state.setState(GroupActivity.CANCEL_SWIPING_PRESSED);
         } else if(view.getId() == R.id.ready_up) {
             state.setState(GroupActivity.READY_UP_PRESSED);
         }
     }
+
+    private void showInputDialog(Context c) {
+        final EditText taskEditText = new EditText(c);
+        AlertDialog dialog = new AlertDialog.Builder(c)
+                .setTitle("Propose Custom Activity")
+                .setMessage("Enter your activity suggestion")
+                .setView(taskEditText)
+                .setPositiveButton("Suggest", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String activity = String.valueOf(taskEditText.getText());
+                        FakeBackend.addActivity(activity);
+                    }
+                })
+                .setNegativeButton("Cancel", null)
+                .create();
+        dialog.show();
+    }
+
 }
