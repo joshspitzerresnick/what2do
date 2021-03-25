@@ -19,7 +19,6 @@ import java.util.List;
 
 public class MatchesActivity extends Activity implements View.OnClickListener {
     private Button done;
-    public List<Match> options;
 
 
     @Override
