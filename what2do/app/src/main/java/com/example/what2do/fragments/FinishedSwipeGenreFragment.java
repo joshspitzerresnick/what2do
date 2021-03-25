@@ -32,6 +32,8 @@ public class FinishedSwipeGenreFragment extends Fragment implements View.OnClick
         readyUpButton = view.findViewById(R.id.ready_up);
         readyUpButton.setOnClickListener(this);
 
+        FakeBackend.setGenreChosen(2);
+
         state = new ViewModelProvider(requireActivity()).get(FragmentState.class);
         state.setState(GroupActivity.NONE);
         return view;
