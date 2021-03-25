@@ -138,7 +138,7 @@ public class SwipeActivity extends AppCompatActivity implements View.OnClickList
         manager.setSwipeableMethod(SwipeableMethod.AutomaticAndManual);
         manager.setOverlayInterpolator(new LinearInterpolator());
         cardStackView.setLayoutManager(manager);
-        adapter = new CardStackAdapter(FakeBackend.getActivities());
+        adapter = new CardStackAdapter(FakeBackend.getActivities().get(FakeBackend.getGenreChosen()));
         cardStackView.setAdapter(adapter);
         cardStackView.setItemAnimator(new DefaultItemAnimator());
 

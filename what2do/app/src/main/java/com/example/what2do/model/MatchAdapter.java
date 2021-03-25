@@ -86,7 +86,6 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MatchViewHol
 
             matches = FakeBackend.getMatches();
 
-            //go through each item if you have few items within recycler view
             if (getLayoutPosition() == 0) {
                 Match m = matches.get(0);
                 FakeBackend.setMatch(m);
