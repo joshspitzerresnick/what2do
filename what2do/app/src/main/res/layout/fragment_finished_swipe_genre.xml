@@ -1,47 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
 
-    <Button
-        android:id="@+id/propose_custom_activity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Propose Custom Activity"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.499" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp" >
 
-    <Button
-        android:id="@+id/cancel_swiping"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Cancel Swiping"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/propose_custom_activity" />
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:layout_centerInParent="true"
+            android:text="Waiting for %s to finish their genre selections..."
+            android:textStyle="italic"
+            android:textSize="18sp"
+            android:textAlignment="center"
+            android:gravity="center_horizontal" />
 
-    <Button
-        android:id="@+id/ready_up"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Ready Up"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cancel_swiping" />
+    </RelativeLayout>
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:text="Waiting for others to swipe genres"
-        app:layout_constraintBottom_toTopOf="@+id/propose_custom_activity"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:orientation="horizontal"
+        android:layout_marginBottom="12dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <Button
+                android:id="@+id/propose_custom_activity"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:text=""
+                android:background="@drawable/button_propose_activity"
+                android:layout_centerHorizontal="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:text="Propose Activity"
+                android:textSize="18sp"
+                android:textAlignment="center"
+                android:gravity="center_horizontal"
+                android:layout_centerInParent="true"
+                android:layout_below="@+id/propose_custom_activity" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <Button
+                android:id="@+id/cancel_swiping"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@drawable/button_cancel_swiping"
+                android:text=""
+                android:layout_centerInParent="true"
+                android:layout_alignParentTop="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:text="Cancel Swiping"
+                android:textSize="18sp"
+                android:textAlignment="center"
+                android:gravity="center_horizontal"
+                android:layout_centerInParent="true"
+                android:layout_below="@+id/cancel_swiping" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <Button
+                android:id="@+id/ready_up"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@drawable/button_ready_up"
+                android:text=""
+                android:layout_centerInParent="true"
+                android:layout_alignParentTop="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:text="Ready Up"
+                android:textSize="18sp"
+                android:textAlignment="center"
+                android:gravity="center_horizontal"
+                android:layout_centerInParent="true"
+                android:layout_below="@+id/ready_up" />
+
+        </RelativeLayout>
+    </LinearLayout>
+</LinearLayout>
