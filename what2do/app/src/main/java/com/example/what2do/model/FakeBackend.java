@@ -1,9 +1,14 @@
 package com.example.what2do.model;
 
+import android.os.CountDownTimer;
+import android.util.Log;
+
 import com.example.what2do.R;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class FakeBackend {
     private static List<Group> groups;
@@ -14,6 +19,9 @@ public class FakeBackend {
     private static List<ItemModel> genres;
     private static List<List<ItemModel>> activities;
     private static int genreChosen = -1;
+
+    private static MemberStateListener memberStateListener;
+    private static Map<Member, CountDownTimer> memberSimulatorTimers;
 
 
     public static void init() {
@@ -137,6 +145,8 @@ public class FakeBackend {
         activities.add(outdoors_active);
         activities.add(outdoors_casual);
 
+
+        memberSimulatorTimers = new HashMap<>();
     }
 
     public static List<Group> getGroups() {
@@ -173,6 +183,47 @@ public class FakeBackend {
 
     public static void addActivity(String activityName) {
         activities.get(genreChosen).add(new ItemModel(R.drawable.questionmark, activityName, "User Created Activity", 5f));
+    }
 
+    public static void setMemberStateListener(MemberStateListener memberStateListener) {
+        FakeBackend.memberStateListener = memberStateListener;
+    }
+
+    public static void changeMemberState(GroupState groupState, Member member, MemberState memberState) {
+        memberSimulatorTimers.remove(member);
+
+        memberStateListener.memberStateChanged(groupState, member, memberState);
+
+
+        if(member.isUser() && memberState == MemberState.COMPLETED) {
+            // Simulate other group members changing states with delay
+            Group group = memberStateListener.getCurrentGroup();
+
+            for(Member m: group.getGroupMembers()) {
+                if(m != member) {
+                    long delay = Math.max(0, (long)(Math.pow(Math.random(), 2.0) * 5000) - 300);
+                    Log.d("AA", "changing member " + group.getGroupMembers().indexOf(m) + " state to " + MemberState.COMPLETED + " after " + delay + " millis");
+                    changeMemberStateDelayed(groupState, m, MemberState.COMPLETED, delay);
+                }
+            }
+        }
+    }
+
+    private static void changeMemberStateDelayed(GroupState groupState, Member member, MemberState memberState, long delay) {
+        if(memberSimulatorTimers.containsKey(member)) {
+            memberSimulatorTimers.get(member).cancel();
+        }
+        memberSimulatorTimers.put(member, new CountDownTimer(delay, delay) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+
+            }
+
+            @Override
+            public void onFinish() {
+                FakeBackend.changeMemberState(groupState, member, memberState);
+            }
+        });
+        memberSimulatorTimers.get(member).start();
     }
 }

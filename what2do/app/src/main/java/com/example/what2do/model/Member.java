@@ -5,7 +5,7 @@ import com.example.what2do.R;
 public class Member {
     private String name;
     private int image;
-    private int icon = R.drawable.group_wait;
+    private MemberState state = MemberState.NONE;
     private boolean isUser = false;
 
     public Member(String name, int image, boolean isUser) {
@@ -23,10 +23,18 @@ public class Member {
     }
 
     public int getIcon() {
-        return icon;
+        return state.icon;
     }
 
     public boolean isUser() {
         return isUser;
+    }
+
+    public MemberState getState() {
+        return state;
+    }
+
+    public void setState(MemberState state) {
+        this.state = state;
     }
 }

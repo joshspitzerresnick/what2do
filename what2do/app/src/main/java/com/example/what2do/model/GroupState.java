@@ -1,0 +1,15 @@
+package com.example.what2do.model;
+
+public enum GroupState {
+    IDLE,
+    FACTORS,
+    FACTORS_STARTED,
+    FACTORS_FINISHED,
+    SWIPE_GENRE,
+    SWIPE_GENRE_STARTED,
+    SWIPE_GENRE_FINISHED,
+    SWIPE_ACTIVITY,
+    SWIPE_ACTIVITY_STARTED,
+    SWIPE_ACTIVITY_FINISHED,
+    MATCHES,
+}

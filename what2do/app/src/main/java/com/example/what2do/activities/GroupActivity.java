@@ -26,28 +26,21 @@ import com.example.what2do.fragments.StartSwipeActivityFragment;
 import com.example.what2do.fragments.StartSwipeGenreFragment;
 import com.example.what2do.model.FakeBackend;
 import com.example.what2do.model.Group;
+import com.example.what2do.model.GroupState;
+import com.example.what2do.model.Member;
 import com.example.what2do.model.MemberAdapter;
-import com.example.what2do.util.ButtonListener;
+import com.example.what2do.model.MemberState;
+import com.example.what2do.model.MemberStateListener;
 
-enum GroupState {
-    IDLE,
-    FACTORS,
-    FACTORS_STARTED,
-    FACTORS_FINISHED,
-    SWIPE_GENRE,
-    SWIPE_GENRE_STARTED,
-    SWIPE_GENRE_FINISHED,
-    SWIPE_ACTIVITY,
-    SWIPE_ACTIVITY_STARTED,
-    SWIPE_ACTIVITY_FINISHED,
-    MATCHES,
-}
+import java.util.HashMap;
+import java.util.Map;
 
-public class GroupActivity extends FragmentActivity implements View.OnClickListener {
-    private RecyclerView memberRecyclerView;
+public class GroupActivity extends FragmentActivity implements View.OnClickListener, MemberStateListener {
+    private GroupState groupState;
+    private MemberAdapter memberAdapter;
     private Group group;
-
-    private GroupState userState;
+    private Member userMember;
+    private CountDownTimer delayTimer;
 
     private FragmentManager fragmentManager;
     private FragmentState fragmentState;
@@ -80,15 +73,27 @@ public class GroupActivity extends FragmentActivity implements View.OnClickListe
         int groupIndex = intent.getIntExtra(ProfileActivity.GROUP_ID, 0);
         group = FakeBackend.getGroups().get(groupIndex);
 
+        FakeBackend.setMemberStateListener(this);
+        setAllMemberStates(MemberState.NONE);
+
+        for(Member m: group.getGroupMembers()) {
+            if(m.isUser()) {
+                userMember = m;
+            }
+        }
+        if(userMember == null) {
+            userMember = group.getGroupMembers().get(0);
+        }
+
         TextView groupTitle = findViewById(R.id.group_title);
         groupTitle.setText(group.getName());
 
-        memberRecyclerView = (RecyclerView)findViewById(R.id.member_list);
+        RecyclerView memberRecyclerView = (RecyclerView) findViewById(R.id.member_list);
         memberRecyclerView.setHasFixedSize(true);
         memberRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        MemberAdapter adapter = new MemberAdapter(this, group.getGroupMembers());
-        memberRecyclerView.setAdapter(adapter);
+        memberAdapter = new MemberAdapter(this, group.getGroupMembers());
+        memberRecyclerView.setAdapter(memberAdapter);
 
 
         startActivityFragment = new StartActivityFragment();
@@ -109,40 +114,35 @@ public class GroupActivity extends FragmentActivity implements View.OnClickListe
         fragmentState.getState().observe(this, state -> {
             switch(state) {
                 case START_ACTIVITY_PRESSED:
-                    setUserState(GroupState.FACTORS_STARTED);
+                    setGroupState(GroupState.FACTORS_STARTED);
                     break;
                 case START_FACTORS_PRESSED:
-                    setUserState(GroupState.FACTORS_STARTED);
+                    setGroupState(GroupState.FACTORS_STARTED);
                     break;
                 case SWIPE_GENRE_PRESSED:
-                    setUserState(GroupState.SWIPE_GENRE_STARTED);
+                    setGroupState(GroupState.SWIPE_GENRE_STARTED);
                     break;
                 case SWIPE_ACTIVITY_PRESSED:
-                    setUserState(GroupState.SWIPE_ACTIVITY_STARTED);
+                    setGroupState(GroupState.SWIPE_ACTIVITY_STARTED);
                     break;
                 case PROPOSE_CUSTOM_ACTIVITY_PRESSED:
-
                     break;
                 case SWIPE_AGAIN_PRESSED:
-                    setUserState(GroupState.SWIPE_ACTIVITY_STARTED);
+                    FakeBackend.changeMemberState(groupState, userMember, MemberState.REDO_SWIPE);
+                    //setGroupState(GroupState.SWIPE_ACTIVITY_STARTED);
                     break;
                 case CANCEL_SWIPING_PRESSED:
-                    finish();
+                    //finish();
                     break;
                 case READY_UP_PRESSED:
-                    //after pressing ready up, simulate waiting for group members by waiting 2 seconds
-                    if(userState == GroupState.SWIPE_GENRE_FINISHED) {
-                        setUserStateDelayed(GroupState.SWIPE_ACTIVITY_STARTED, 2000);
-                    } else if(userState == GroupState.SWIPE_ACTIVITY_FINISHED) {
-                        setUserStateDelayed(GroupState.MATCHES, 2000);
-                    }
+                    FakeBackend.changeMemberState(groupState, userMember, MemberState.COMPLETED);
                     break;
                 default:
                     break;
             }
         });
 
-        setUserState(GroupState.IDLE);
+        setGroupState(GroupState.IDLE);
         //if another group member started an activity, set state to FACTORS_STARTED
     }
 
@@ -159,50 +159,54 @@ public class GroupActivity extends FragmentActivity implements View.OnClickListe
         Log.d("what2do", "activity result: " + requestCode + ", " + resultCode);
         if (requestCode == CHOOSE_FACTORS_REQUEST) {
             if (resultCode == RESULT_OK) {
-                setUserState(GroupState.FACTORS_FINISHED);
+                setGroupState(GroupState.FACTORS_FINISHED);
             } else {
                 //if cancelled, show the fragment with "choose factors" button
-                setUserState(GroupState.FACTORS);
+                setGroupState(GroupState.FACTORS);
             }
         } else if(requestCode == SWIPE_GENRE_REQUEST) {
             if (resultCode == RESULT_OK) {
-                setUserState(GroupState.SWIPE_GENRE_FINISHED);
+                setGroupState(GroupState.SWIPE_GENRE_FINISHED);
             } else {
                 //if back is pressed, show the fragment with "swipe" button
-                setUserState(GroupState.SWIPE_GENRE);
+                setGroupState(GroupState.SWIPE_GENRE);
             }
         } else if(requestCode == SWIPE_ACTIVITY_REQUEST) {
             if (resultCode == RESULT_OK) {
-                setUserState(GroupState.SWIPE_ACTIVITY_FINISHED);
+                setGroupState(GroupState.SWIPE_ACTIVITY_FINISHED);
             } else {
                 //if back is pressed, show the fragment with "swipe" button
-                setUserState(GroupState.SWIPE_ACTIVITY);
+                setGroupState(GroupState.SWIPE_ACTIVITY);
             }
         } else if(requestCode == MATCHES_REQUEST) {
-            setUserState(GroupState.IDLE);
+            setGroupState(GroupState.IDLE);
         }
     }
 
-    private void setUserStateDelayed(GroupState state, long delayMillis) {
-        new CountDownTimer(delayMillis, delayMillis) {
+    private void setGroupStateDelayed(GroupState state, long delayMillis) {
+        if(delayTimer != null) {
+            delayTimer.cancel();
+        }
+        delayTimer = new CountDownTimer(delayMillis, delayMillis) {
             @Override
             public void onTick(long millisUntilFinished) {
             }
 
             @Override
             public void onFinish() {
-                setUserState(state);
+                setGroupState(state);
             }
         }.start();
     }
 
-    private void setUserState(GroupState state) {
+    private void setGroupState(GroupState state) {
         //GroupState prevState = userState;
-        userState = state;
+        groupState = state;
         Intent intent;
 
-        switch(userState) {
+        switch(groupState) {
             case IDLE:
+                setAllMemberStates(MemberState.NONE);
                 setFragment(startActivityFragment);
                 break;
             case FACTORS:
@@ -210,19 +214,21 @@ public class GroupActivity extends FragmentActivity implements View.OnClickListe
                 break;
             case FACTORS_STARTED:
                 //show factors activity
+                setAllMemberStates(MemberState.IN_PROGRESS);
                 intent = new Intent(this, FactorsActivity.class);
                 startActivityForResult(intent, CHOOSE_FACTORS_REQUEST);
                 break;
             case FACTORS_FINISHED:
                 setFragment(finishedFactorsFragment);
                 //wait until all group members are finished, go to swipe state
-                setUserStateDelayed(GroupState.SWIPE_GENRE_STARTED, 2000);
+                FakeBackend.changeMemberState(groupState, userMember, MemberState.COMPLETED);
                 break;
             case SWIPE_GENRE:
                 setFragment(startSwipeGenreFragment);
                 break;
             case SWIPE_GENRE_STARTED:
                 //show swipe activity
+                setAllMemberStates(MemberState.IN_PROGRESS);
                 intent = new Intent(this, SwipeGenreActivity.class);
                 startActivityForResult(intent, SWIPE_GENRE_REQUEST);
                 break;
@@ -237,6 +243,7 @@ public class GroupActivity extends FragmentActivity implements View.OnClickListe
                 break;
             case SWIPE_ACTIVITY_STARTED:
                 //show swipe activity
+                setAllMemberStates(MemberState.IN_PROGRESS);
                 intent = new Intent(this, SwipeActivity.class);
                 startActivityForResult(intent, SWIPE_ACTIVITY_REQUEST);
                 break;
@@ -256,5 +263,52 @@ public class GroupActivity extends FragmentActivity implements View.OnClickListe
     @Override
     public void onClick(View view) {
 
+    }
+
+    @Override
+    public Group getCurrentGroup() {
+        return group;
+    }
+
+    @Override
+    public void memberStateChanged(GroupState groupState, Member member, MemberState memberState) {
+        if(groupState != this.groupState || !group.getGroupMembers().contains(member)) {
+            return;
+        }
+
+        setMemberState(member, memberState);
+    }
+
+    private void setAllMemberStates(MemberState state) {
+        for(Member m: group.getGroupMembers()) {
+            FakeBackend.changeMemberState(groupState, m, state);
+        }
+    }
+
+    private void setMemberState(Member member, MemberState state) {
+        member.setState(state);
+        if(memberAdapter != null) {
+            memberAdapter.notifyItemChanged(group.getGroupMembers().indexOf(member));
+        }
+
+        int numCompleted = 0;
+        int numRedoSwipe = 0;
+        for(Member m: group.getGroupMembers()) {
+            if(m.getState() == MemberState.COMPLETED) {
+                numCompleted++;
+            } else if(m.getState() == MemberState.REDO_SWIPE) {
+                numRedoSwipe++;
+            }
+        }
+        if(groupState == GroupState.FACTORS_FINISHED && numCompleted == group.getGroupMembers().size()) {
+            setGroupStateDelayed(GroupState.SWIPE_GENRE_STARTED, 500);
+        } else if(groupState == GroupState.SWIPE_GENRE_FINISHED && numCompleted == group.getGroupMembers().size()) {
+            setGroupStateDelayed(GroupState.SWIPE_ACTIVITY_STARTED, 500);
+        } else if(groupState == GroupState.SWIPE_ACTIVITY_FINISHED && numCompleted == group.getGroupMembers().size()) {
+            setGroupStateDelayed(GroupState.MATCHES, 500);
+        } else if(groupState == GroupState.SWIPE_ACTIVITY_FINISHED && numRedoSwipe == group.getGroupMembers().size()) {
+            //setGroupState(GroupState.MATCHES);
+            //redo swiping here
+        }
     }
 }
