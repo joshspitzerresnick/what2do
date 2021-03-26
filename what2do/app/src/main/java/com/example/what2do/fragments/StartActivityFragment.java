@@ -13,11 +13,16 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.what2do.R;
 import com.example.what2do.activities.GroupActivity;
+import com.example.what2do.model.Group;
 
-public class StartActivityFragment extends Fragment implements View.OnClickListener {
+public class StartActivityFragment extends GroupFragment implements View.OnClickListener {
     private FragmentState state;
 
     private Button startActivityButton;
+
+    public StartActivityFragment(Group group) {
+        super(group);
+    }
 
     @Nullable
     @Override

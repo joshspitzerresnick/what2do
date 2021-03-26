@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -18,18 +19,25 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.what2do.R;
 import com.example.what2do.activities.GroupActivity;
 import com.example.what2do.model.FakeBackend;
+import com.example.what2do.model.Group;
 
-public class FinishedSwipeGenreFragment extends Fragment implements View.OnClickListener {
+public class FinishedSwipeGenreFragment extends GroupFragment implements View.OnClickListener {
     private FragmentState state;
     private Button proposeCustomActivityButton, cancelSwipingButton, readyUpButton;
 
     private String m_text;
+
+    public FinishedSwipeGenreFragment(Group group) {
+        super(group);
+    }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_finished_swipe_genre, container, false);
 
+        statusText = view.findViewById(R.id.status_text);
+        refreshStatusText();
         proposeCustomActivityButton = view.findViewById(R.id.propose_custom_activity);
         proposeCustomActivityButton.setOnClickListener(this);
         cancelSwipingButton = view.findViewById(R.id.cancel_swiping);
@@ -106,5 +114,4 @@ public class FinishedSwipeGenreFragment extends Fragment implements View.OnClick
                 .create();
         dialog.show();
     }
-
 }

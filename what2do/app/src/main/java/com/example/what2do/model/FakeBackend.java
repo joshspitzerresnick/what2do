@@ -195,15 +195,15 @@ public class FakeBackend {
         memberStateListener.memberStateChanged(groupState, member, memberState);
 
 
-        if(member.isUser() && memberState == MemberState.COMPLETED) {
+        if(member.isUser() && memberState != MemberState.IN_PROGRESS) {
             // Simulate other group members changing states with delay
             Group group = memberStateListener.getCurrentGroup();
 
             for(Member m: group.getGroupMembers()) {
-                if(m != member) {
+                if(m != member && m.getState() != memberState) {
                     long delay = Math.max(0, (long)(Math.pow(Math.random(), 2.0) * 5000) - 300);
-                    Log.d("AA", "changing member " + group.getGroupMembers().indexOf(m) + " state to " + MemberState.COMPLETED + " after " + delay + " millis");
-                    changeMemberStateDelayed(groupState, m, MemberState.COMPLETED, delay);
+                    Log.d("AA", "changing member " + group.getGroupMembers().indexOf(m) + " state to " + memberState + " after " + delay + " millis");
+                    changeMemberStateDelayed(groupState, m, memberState, delay);
                 }
             }
         }

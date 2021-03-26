@@ -26,7 +26,6 @@ public class MemberAdapter extends RecyclerView.Adapter<MemberAdapter.MemberView
     public MemberAdapter(Context mCtx, List<Member> memberList) {
         this.mCtx = mCtx;
         this.memberList = memberList;
-        Log.d("AA", memberList.size() + " 323424");
     }
 
     @NonNull
@@ -47,7 +46,6 @@ public class MemberAdapter extends RecyclerView.Adapter<MemberAdapter.MemberView
         holder.memberName.setText(member.getName());
         holder.memberImage.setImageResource(member.getImage());
         holder.memberIcon.setImageResource(member.getIcon());
-        Log.d("AA", position + "");
     }
 
     @Override
