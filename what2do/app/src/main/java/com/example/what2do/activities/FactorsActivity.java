@@ -14,7 +14,6 @@ public class FactorsActivity extends Activity implements View.OnClickListener {
     private AlertDialog.Builder dialogBuilder;
     private AlertDialog dialog;
     private Button continueButton, backButton;
-    private CheckBox checkBox;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

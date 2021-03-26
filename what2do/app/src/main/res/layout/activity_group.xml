@@ -56,16 +56,23 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <Button
+        android:id="@+id/LeaveGroup"
+        android:layout_width="197dp"
+        android:layout_marginLeft="100dp"
+        android:layout_height="wrap_content"
+        android:text="Leave Group" />
+
     <LinearLayout
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
         android:layout_marginTop="0dp"
+        android:layout_weight="1"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/member_list"></LinearLayout>
+        app:layout_constraintTop_toBottomOf="@+id/member_list" />
 
 </LinearLayout>

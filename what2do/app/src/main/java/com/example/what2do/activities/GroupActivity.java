@@ -1,10 +1,12 @@
 package com.example.what2do.activities;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -67,10 +69,20 @@ public class GroupActivity extends FragmentActivity implements View.OnClickListe
     public static final int SWIPE_ACTIVITY_REQUEST = 2;
     public static final int MATCHES_REQUEST = 3;
 
+    // Leave group popup stuff
+    private Button leaveButton;
+    private AlertDialog.Builder dialogBuilder;
+    private AlertDialog dialog;
+    private Button yesButton, noButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_group);
+
+        // Leave group
+        leaveButton = findViewById(R.id.LeaveGroup);
+        leaveButton.setOnClickListener(this);
 
         Intent intent = getIntent();
         int groupIndex = intent.getIntExtra(ProfileActivity.GROUP_ID, 0);
@@ -147,6 +159,7 @@ public class GroupActivity extends FragmentActivity implements View.OnClickListe
 
         setGroupState(GroupState.IDLE);
         //if another group member started an activity, set state to FACTORS_STARTED
+
     }
 
     private void setFragment(GroupFragment fragment) {
@@ -269,6 +282,38 @@ public class GroupActivity extends FragmentActivity implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
+        if(view.getId() == R.id.LeaveGroup) {
+            createNewPopUp();
+        }
+    }
+
+    public void createNewPopUp(){
+        dialogBuilder = new AlertDialog.Builder(this);
+        final View popUp = getLayoutInflater().inflate(R.layout.leavegrouppopup, null);
+
+        yesButton = (Button) popUp.findViewById(R.id.yesButton);
+        noButton = (Button) popUp.findViewById(R.id.noButton);
+
+        dialogBuilder.setView(popUp);
+        dialog = dialogBuilder.create();
+        dialog.show();
+
+        yesButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view){
+                dialog.dismiss();
+                setResult(RESULT_OK);
+                finish();
+            }
+        });
+
+        noButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view){
+                dialog.dismiss();
+            }
+        });
+
 
     }
 
