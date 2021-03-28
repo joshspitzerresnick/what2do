@@ -7,6 +7,7 @@ import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -83,6 +84,10 @@ public class GroupActivity extends FragmentActivity implements View.OnClickListe
         // Leave group
         leaveButton = findViewById(R.id.LeaveGroup);
         leaveButton.setOnClickListener(this);
+
+        // Info Button
+        ImageView infoButton = (ImageView) findViewById(R.id.imageView4);
+        infoButton.setOnClickListener(this);
 
         Intent intent = getIntent();
         int groupIndex = intent.getIntExtra(ProfileActivity.GROUP_ID, 0);
@@ -284,6 +289,10 @@ public class GroupActivity extends FragmentActivity implements View.OnClickListe
     public void onClick(View view) {
         if(view.getId() == R.id.LeaveGroup) {
             createNewPopUp();
+        }
+        else if (view.getId() == R.id.imageView4) {
+            Intent intent = new Intent(this, GroupInfoActivity.class);
+            startActivity(intent);
         }
     }
 

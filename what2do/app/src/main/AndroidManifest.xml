@@ -20,6 +20,7 @@
 
         <activity android:name=".activities.ProfileActivity" />
         <activity android:name=".activities.GroupActivity" />
+        <activity android:name=".activities.GroupInfoActivity" />
         <activity android:name=".activities.FactorsActivity" />
         <activity android:name=".activities.SwipeGenreActivity" />
         <activity android:name=".activities.SwipeActivity" />
