@@ -66,14 +66,14 @@ public class FakeBackend {
         restaurantMatches.add(
                 new Match(
                         1,
-                        "Applebees",
+                        "Applebee's",
                         "American Food",
-                        "Rating: 4.1/5.0",
+                        "Rating: 3.8/5.0",
                         "98% match",
                         R.drawable.applebees,
-                        "8312 MN-7",
-                        "St. Louis Park, MN 55426",
-                        "(952) 933-6701",
+                        "1893 MN-36",
+                        "Roseville, MN 55113",
+                        "(651) 697-0648",
                         "www.applebees.com"));
 
         restaurantMatches.add(
@@ -91,14 +91,14 @@ public class FakeBackend {
         restaurantMatches.add(
                 new Match(
                         3,
-                        "McDonalds",
+                        "McDonald's",
                         "Fast Food",
                         "Rating: 3.2/5.0",
                         "62% match",
                         R.drawable.mcdonalds,
-                        "4565 Erin Ln.",
-                        "Eagan, MN 55122",
-                        "(651) 452-3179",
+                        "916 W Broadway Ave",
+                        "Minneapolis, MN 55411",
+                        "(612) 521-8504",
                         "www.mcdonalds.com"));
 
         genres = new ArrayList<>();
@@ -112,12 +112,14 @@ public class FakeBackend {
         activities = new ArrayList<>();
 
         List<ItemModel> eating_out = new ArrayList<>();
-        //Using Coffman Memorial Union as starting point just for now
+        // Using Coffman Memorial Union as starting point just for now
         eating_out.add(new ItemModel(R.drawable.fiveguys, "Five Guys", "0.7 mi, $", 4.3f));
         eating_out.add(new ItemModel(R.drawable.mcdonalds2, "McDonald's", "3.6 mi, $", 3.3f));
         eating_out.add(new ItemModel(R.drawable.pizzahut, "Pizza Hut", "3.5 mi, $", 3.5f));
         eating_out.add(new ItemModel(R.drawable.subway, "Subway", "3.9 mi, $", 3.9f));
         eating_out.add(new ItemModel(R.drawable.tacobell, "Taco Bell", "2.8 mi, $", 3.2f));
+        eating_out.add(new ItemModel(R.drawable.applebees, "Applebee's", "3.3 mi, $$", 3.8f));
+        eating_out.add(new ItemModel(R.drawable.olivegarden, "Olive Garden", "6.6 mi, $$", 4.3f));
         eating_out.add(new ItemModel(R.drawable.butcher, "The Herbivorous Butcher", "2.2 mi, $$, Vegan", 4.7f));
         eating_out.add(new ItemModel(R.drawable.trio, "Trio Plant-Based", "4.8 mi, $$, Vegan", 4.5f));
         eating_out.add(new ItemModel(R.drawable.capital, "The Capital Grille", "2.9 mi, $$$$", 4.7f));
