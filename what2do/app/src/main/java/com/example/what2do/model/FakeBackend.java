@@ -112,23 +112,30 @@ public class FakeBackend {
         activities = new ArrayList<>();
 
         List<ItemModel> eating_out = new ArrayList<>();
-        eating_out.add(new ItemModel(R.drawable.fiveguys, "Five Guys", "1 mi, $", 4.2f));
-        eating_out.add(new ItemModel(R.drawable.mcdonalds2, "McDonalds", "3.7 mi, $", 5.0f));
-        eating_out.add(new ItemModel(R.drawable.pizzahut, "Pizza Hut", "2 mi, $", 4.7f));
+        //Using Coffman Memorial Union as starting point just for now
+        eating_out.add(new ItemModel(R.drawable.fiveguys, "Five Guys", "0.7 mi, $", 4.3f));
+        eating_out.add(new ItemModel(R.drawable.mcdonalds2, "McDonald's", "3.6 mi, $", 3.3f));
+        eating_out.add(new ItemModel(R.drawable.pizzahut, "Pizza Hut", "3.5 mi, $", 3.5f));
         eating_out.add(new ItemModel(R.drawable.subway, "Subway", "3.9 mi, $", 3.9f));
-        eating_out.add(new ItemModel(R.drawable.tacobell, "Taco Bell", "6.7 mi, $", 3.2f));
+        eating_out.add(new ItemModel(R.drawable.tacobell, "Taco Bell", "2.8 mi, $", 3.2f));
+        eating_out.add(new ItemModel(R.drawable.butcher, "The Herbivorous Butcher", "2.2 mi, $$, Vegan", 4.7f));
+        eating_out.add(new ItemModel(R.drawable.trio, "Trio Plant-Based", "4.8 mi, $$, Vegan", 4.5f));
+        eating_out.add(new ItemModel(R.drawable.capital, "The Capital Grille", "2.9 mi, $$$$", 4.7f));
 
         List<ItemModel> movies = new ArrayList<>();
         movies.add(new ItemModel(R.drawable.nomadland, "Nomadland", "R", 4.7f));
 
+
         List<ItemModel> indoors = new ArrayList<>();
-        indoors.add(new ItemModel(R.drawable.escape, "Escape Room", "", 0f));
-        indoors.add(new ItemModel(R.drawable.bowling, "Bowling", "", 0f));
-        indoors.add(new ItemModel(R.drawable.museum, "Art Museum", "", 0f));
-        indoors.add(new ItemModel(R.drawable.laser, "Laser Tag", "", 0f));
+        indoors.add(new ItemModel(R.drawable.escape, "Escape Room", "1.9 mi, $$", 4.9f)); // Mission Manor
+        indoors.add(new ItemModel(R.drawable.bowling, "Bowling", "2.7 mi, $$", 4.4f)); // Elsie's
+        indoors.add(new ItemModel(R.drawable.museum, "Art Museum", "3.3 mi", 4.8f)); // MIA
+        indoors.add(new ItemModel(R.drawable.laser, "Laser Tag", "12.3 mi, $$", 4.3f)); // Zero Gravity
+
 
         List<ItemModel> outdoors_active = new ArrayList<>();
-        outdoors_active.add(new ItemModel(R.drawable.bike, "Biking", "", 0f));
+        //Not sure if it makes sense to provide locations/trails here
+        outdoors_active.add(new ItemModel(R.drawable.bike, "Biking", "4.8 mi", 4.7f)); // Winchell Trail
         outdoors_active.add(new ItemModel(R.drawable.kayak, "Kayaking", "", 0f));
         outdoors_active.add(new ItemModel(R.drawable.hiking, "Hiking", "", 0f));
         outdoors_active.add(new ItemModel(R.drawable.fish, "Fishing", "", 0f));
