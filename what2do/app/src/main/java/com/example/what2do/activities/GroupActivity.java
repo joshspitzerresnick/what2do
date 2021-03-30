@@ -76,6 +76,7 @@ public class GroupActivity extends FragmentActivity implements View.OnClickListe
     private AlertDialog.Builder dialogBuilder;
     private AlertDialog dialog;
     private Button yesButton, noButton;
+    private ImageView backToProfileButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,6 +90,9 @@ public class GroupActivity extends FragmentActivity implements View.OnClickListe
         // Info Button
         ImageView infoButton = (ImageView) findViewById(R.id.imageView4);
         infoButton.setOnClickListener(this);
+
+        backToProfileButton = findViewById(R.id.backToProfile);
+        backToProfileButton.setOnClickListener(this);
 
         Intent intent = getIntent();
         int groupIndex = intent.getIntExtra(ProfileActivity.GROUP_ID, 0);
@@ -155,7 +159,6 @@ public class GroupActivity extends FragmentActivity implements View.OnClickListe
 //                    } catch (InterruptedException e) {
 //                        setGroupState(GroupState.SWIPE_ACTIVITY_STARTED);
 //                    }
-                    setGroupState(GroupState.SWIPE_ACTIVITY_STARTED);
                     break;
                 case CANCEL_SWIPING_PRESSED:
                     finish();
@@ -295,10 +298,11 @@ public class GroupActivity extends FragmentActivity implements View.OnClickListe
     public void onClick(View view) {
         if(view.getId() == R.id.LeaveGroup) {
             createNewPopUp();
-        }
-        else if (view.getId() == R.id.imageView4) {
+        } else if (view.getId() == R.id.imageView4) {
             Intent intent = new Intent(this, GroupInfoActivity.class);
             startActivity(intent);
+        } else if(view.getId() == R.id.backToProfile) {
+            finish();
         }
     }
 
@@ -377,8 +381,7 @@ public class GroupActivity extends FragmentActivity implements View.OnClickListe
         } else if(groupState == GroupState.SWIPE_ACTIVITY_FINISHED && numCompleted == group.getGroupMembers().size()) {
             setGroupStateDelayed(GroupState.MATCHES, 1000);
         } else if(groupState == GroupState.SWIPE_ACTIVITY_FINISHED && numRedoSwipe == group.getGroupMembers().size()) {
-            //setGroupState(GroupState.MATCHES);
-            //redo swiping here
+            setGroupStateDelayed(GroupState.SWIPE_ACTIVITY_STARTED, 1000);
         }
     }
 }
