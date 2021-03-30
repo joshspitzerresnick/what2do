@@ -38,6 +38,7 @@ import com.example.what2do.model.MemberStateListener;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 public class GroupActivity extends FragmentActivity implements View.OnClickListener, MemberStateListener {
     private GroupState groupState;
@@ -149,10 +150,15 @@ public class GroupActivity extends FragmentActivity implements View.OnClickListe
                     break;
                 case SWIPE_AGAIN_PRESSED:
                     FakeBackend.changeMemberState(groupState, userMember, MemberState.REDO_SWIPE);
-                    //setGroupState(GroupState.SWIPE_ACTIVITY_STARTED);
+//                    try {
+//                        TimeUnit.SECONDS.sleep(3);
+//                    } catch (InterruptedException e) {
+//                        setGroupState(GroupState.SWIPE_ACTIVITY_STARTED);
+//                    }
+                    setGroupState(GroupState.SWIPE_ACTIVITY_STARTED);
                     break;
                 case CANCEL_SWIPING_PRESSED:
-                    //finish();
+                    finish();
                     break;
                 case READY_UP_PRESSED:
                     FakeBackend.changeMemberState(groupState, userMember, MemberState.COMPLETED);
