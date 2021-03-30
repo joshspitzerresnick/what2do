@@ -1,6 +1,7 @@
 package com.example.what2do.activities;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -20,11 +21,12 @@ import java.util.List;
 public class MatchesActivity extends Activity implements View.OnClickListener {
     private Button done;
 
-
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.matches_done) {
-            finish();
+            //finish();
+            Intent intent = new Intent(view.getContext(), ProfileActivity.class);
+            startActivity(intent);
         }
     }
 
