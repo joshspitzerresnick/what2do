@@ -322,6 +322,7 @@ public class GroupActivity extends FragmentActivity implements View.OnClickListe
             public void onClick(View view){
                 dialog.dismiss();
                 setResult(RESULT_OK);
+                FakeBackend.LeaveGroup(group);
                 finish();
             }
         });

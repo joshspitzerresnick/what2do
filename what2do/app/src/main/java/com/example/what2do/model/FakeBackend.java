@@ -162,6 +162,10 @@ public class FakeBackend {
         return groups;
     }
 
+    public static void LeaveGroup(Group group) {
+        groups.remove(group);
+    }
+
     public static List<Match> getMatches() {
         return restaurantMatches;
     }

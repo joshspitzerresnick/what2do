@@ -25,6 +25,7 @@ public class ProfileActivity extends Activity implements View.OnClickListener, B
     public static final String GROUP_ID = "com.example.what2do.GROUP_ID";
 
     private RecyclerView groupRecyclerView;
+    private GroupAdapter groupAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,8 +37,14 @@ public class ProfileActivity extends Activity implements View.OnClickListener, B
         groupRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         FakeBackend.init();
-        GroupAdapter adapter = new GroupAdapter(this, FakeBackend.getGroups(), this);
-        groupRecyclerView.setAdapter(adapter);
+        groupAdapter = new GroupAdapter(this, FakeBackend.getGroups(), this);
+        groupRecyclerView.setAdapter(groupAdapter);
+    }
+
+    @Override
+    protected void onResume() {
+        groupAdapter.notifyDataSetChanged();
+        super.onResume();
     }
 
     @Override
